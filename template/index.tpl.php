@@ -2,6 +2,7 @@
 <div class="container">
     <h1>Mes QCMs</h1>
 
+    <a href="">Nouveau</a>
     <table border="1">
         <thead>
             <tr>
