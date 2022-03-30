@@ -2,7 +2,7 @@
 <div class="container">
     <h1>Mes QCMs</h1>
 
-    <a href="">Nouveau</a>
+    <a href="/new-qcm.php">Nouveau</a>
     <table border="1">
         <thead>
             <tr>
