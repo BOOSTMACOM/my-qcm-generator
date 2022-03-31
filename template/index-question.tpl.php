@@ -18,12 +18,14 @@
                 <td><?= $q->getTitle() ?></td>
                 <td>
                     <a href="/edit-question.php?id=<?= $q->getId() ?>">Modifier</a>
-                    <a href="">Supprimer</a>
+                    <form action="/delete-question.php" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ?')">
+                        <input type="hidden" name="id" value="<?= $q->getId() ?>" />
+                        <input type="submit" name="submit" value="Supprimer" />
+                    </form>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-
 </div>
 <?php require '../template/partials/_bottom.tpl.php'; ?>

@@ -1,28 +1,15 @@
 <?php
 
 require '../app/Entity/Question.php';
+require_once '../app/Manager/Manager.php';
 
-class QuestionManager
+class QuestionManager extends Manager
 {
-    private $pdo;
-
-    public function __construct()
-    {
-        try
-        {
-            $this->pdo = new PDO('mysql:host=localhost;dbname=my_qcm_generator','root');
-        }
-        catch(PDOException $e)
-        {
-            echo 'Error : ' . $e->getMessage();
-            die;
-        }
-    }
-
+    
     public function getAll()
     {
         $sql = 'SELECT * FROM question';
-        $req = $this->pdo->prepare($sql);
+        $req = $this->getPdo()->prepare($sql);
         $req->execute();
         $qcms = $req->fetchAll(PDO::FETCH_ASSOC);
         $result = [];
@@ -46,7 +33,7 @@ class QuestionManager
     public function get(int $id) : Question
     {
         $sql = "SELECT * FROM question WHERE id = :id";
-        $req = $this->pdo->prepare($sql);
+        $req = $this->getPdo()->prepare($sql);
         $req->execute([
             'id' => $id
         ]);
@@ -63,20 +50,27 @@ class QuestionManager
     public function insert(string $title, int $id_qcm) : int
     {
         $sql = "INSERT INTO question (title, id_qcm) VALUES (:title, :id_qcm)";
-        $req = $this->pdo->prepare($sql);
+        $req = $this->getPdo()->prepare($sql);
         $req->execute([
             'title' => $title,
             'id_qcm' => $id_qcm
         ]);
 
-        return $this->pdo->lastInsertId();
+        return $this->getPdo()->lastInsertId();
     }
 
     public function update(int $id, string $title, int $id_qcm)
     {
         $sql = "UPDATE question SET title = :title, id_qcm = :id_qcm WHERE id = :id";
-        $req = $this->pdo->prepare($sql);
+        $req = $this->getPdo()->prepare($sql);
         return $req->execute(compact('id','title','id_qcm'));
+    }
+
+    public function delete(int $id)
+    {
+        $sql = "DELETE FROM question WHERE id = :id";
+        $req = $this->getPdo()->prepare($sql);
+        return $req->execute(compact('id'));
     }
 
 }
