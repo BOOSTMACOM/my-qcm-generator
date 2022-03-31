@@ -72,4 +72,11 @@ class QuestionManager
         return $this->pdo->lastInsertId();
     }
 
+    public function update(int $id, string $title, int $id_qcm)
+    {
+        $sql = "UPDATE question SET title = :title, id_qcm = :id_qcm WHERE id = :id";
+        $req = $this->pdo->prepare($sql);
+        return $req->execute(compact('id','title','id_qcm'));
+    }
+
 }
