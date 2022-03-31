@@ -17,7 +17,7 @@
                 <td><?= $q->getId() ?></td>
                 <td><?= $q->getTitle() ?></td>
                 <td>
-                    <a href="">Modifier</a>
+                    <a href="/edit-question.php?id=<?= $q->getId() ?>">Modifier</a>
                     <a href="">Supprimer</a>
                 </td>
             </tr>

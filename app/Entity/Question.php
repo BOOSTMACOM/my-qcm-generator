@@ -7,6 +7,8 @@ class Question
     // TODO : ajouter les propriétés
     private string $title;
 
+    private int $id_qcm;
+
     private array $answers;
 
     /**
@@ -60,6 +62,26 @@ class Question
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_qcm
+     */ 
+    public function getIdQcm()
+    {
+        return $this->id_qcm;
+    }
+
+    /**
+     * Set the value of id_qcm
+     *
+     * @return  self
+     */ 
+    public function setIdQcm($id_qcm)
+    {
+        $this->id_qcm = $id_qcm;
 
         return $this;
     }

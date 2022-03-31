@@ -37,6 +37,29 @@ class QuestionManager
         return $result;
     }
 
+    /**
+     * Recupère les infos d'une question via son id
+     * @param int $id
+     * 
+     * @return Question
+     */
+    public function get(int $id) : Question
+    {
+        $sql = "SELECT * FROM question WHERE id = :id";
+        $req = $this->pdo->prepare($sql);
+        $req->execute([
+            'id' => $id
+        ]);
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        
+        $question = (new Question())
+            ->setId($result['id'])
+            ->setTitle($result['title'])
+            ->setIdQcm($result['id_qcm']);
+
+        return $question;
+    }
+
     public function insert(string $title, int $id_qcm) : int
     {
         $sql = "INSERT INTO question (title, id_qcm) VALUES (:title, :id_qcm)";
