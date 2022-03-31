@@ -1,6 +1,7 @@
 <?php
+require_once '../app/Entity/Entity.php';
 
-class Question
+class Question extends Entity
 {
 
     private int $id;

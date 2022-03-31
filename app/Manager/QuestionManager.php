@@ -15,10 +15,7 @@ class QuestionManager extends Manager
         $result = [];
         foreach($qcms as $qcm)
         {
-            $obj = new Question();
-            $obj->setId($qcm['id']);
-            $obj->setTitle($qcm['title']);
-            $result[] = $obj;
+            $result[] = (new Question())->hydrate($qcm);
         }
 
         return $result;
@@ -39,10 +36,7 @@ class QuestionManager extends Manager
         ]);
         $result = $req->fetch(PDO::FETCH_ASSOC);
         
-        $question = (new Question())
-            ->setId($result['id'])
-            ->setTitle($result['title'])
-            ->setIdQcm($result['id_qcm']);
+        $question = (new Question())->hydrate($result);
 
         return $question;
     }

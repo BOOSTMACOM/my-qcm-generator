@@ -1,6 +1,8 @@
 <?php
 
-class QCM
+require_once '../app/Entity/Entity.php';
+
+class QCM extends Entity
 {
 
     private int $id;

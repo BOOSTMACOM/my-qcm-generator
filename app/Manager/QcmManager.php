@@ -15,10 +15,7 @@ class QcmManager extends Manager
         $result = [];
         foreach($qcms as $qcm)
         {
-            $obj = new QCM();
-            $obj->setId($qcm['id']);
-            $obj->setTitle($qcm['title']);
-            $result[] = $obj;
+            $result[] = (new QCM())->hydrate($qcm);
         }
 
         return $result;
