@@ -19,5 +19,4 @@
     </div>
     <?php endif; ?>
 </div>
-
 <?php require '../template/partials/_bottom.tpl.php'; ?>
