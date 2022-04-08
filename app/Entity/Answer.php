@@ -1,21 +1,13 @@
 <?php
+require_once '../app/Entity/Entity.php';
 
-class Answer
+class Answer extends Entity
 {
+    private int $id;
 
     private string $text;
 
-    private bool $isTheGoodAnswer;
-
-    public function __construct(string $text, bool $isTheGoodAnswer = false)
-    {
-        $this->setText($text)->setIsTheGoodAnswer($isTheGoodAnswer);
-    }
-
-    // TODO : ajouter les propriétés
-
-    // TODO : ajouter les méthodes
-
+    private int $isTheGood = 0;
 
     /**
      * Get the value of text
@@ -38,21 +30,41 @@ class Answer
     }
 
     /**
-     * Get the value of isTheGoodAnswer
+     * Get the value of isTheGood
      */ 
-    public function getIsTheGoodAnswer()
+    public function getIsTheGood()
     {
-        return $this->isTheGoodAnswer;
+        return $this->isTheGood;
     }
 
     /**
-     * Set the value of isTheGoodAnswer
+     * Set the value of isTheGood
      *
      * @return  self
      */ 
-    public function setIsTheGoodAnswer($isTheGoodAnswer)
+    public function setIsTheGood($isTheGood)
     {
-        $this->isTheGoodAnswer = $isTheGoodAnswer;
+        $this->isTheGood = $isTheGood;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

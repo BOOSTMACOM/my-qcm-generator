@@ -3,7 +3,6 @@ require_once '../app/Entity/Entity.php';
 
 class Question extends Entity
 {
-
     private int $id;
     // TODO : ajouter les propriétés
     private string $title;

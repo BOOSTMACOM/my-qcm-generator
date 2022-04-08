@@ -41,6 +41,28 @@ class QuestionManager extends Manager
         return $question;
     }
 
+    /**
+     * @param int $qcmId
+     * 
+     * @return [type]
+     */
+    public function getByQcmId(int $qcmId)
+    {
+        $sql = "SELECT * FROM question WHERE id_qcm = :id_qcm";
+        $req = $this->getPdo()->prepare($sql);
+        $req->execute([
+            'id_qcm' => $qcmId
+        ]);
+        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        $questions = [];
+        foreach($result as $question)
+        {
+            $questions[] = (new Question())->hydrate($question);
+        }
+
+        return $questions;
+    }
+
     public function insert(string $title, int $id_qcm) : int
     {
         $sql = "INSERT INTO question (title, id_qcm) VALUES (:title, :id_qcm)";
